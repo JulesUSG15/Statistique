@@ -1,3 +1,12 @@
 tab <- read.table("file:///Users/jules/Documents/huitres.txt",header=T)
 str(tab)
 tab$bassin=as.factor(tab$bassin)
+table(tab$bassin)
+summary(tab)
+t.test(tab$pdsinit,tab$pdsfinal,paired=T)
+t.test(tab$pdsfinal,mu=25,alternative="greater")
+tab$croissance = (tab$pdsfinal-tab$pdsinit)/tab$pdsinit
+head(tab)
+str(tab)
+var.test(tab$croissance~tab$bassin)
+t.test(tab$croissance~tab$bassin,alternative="two.sided",var.equal=T)
